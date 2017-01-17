@@ -1,4 +1,5 @@
 #include "class_pacco.h"
+#include "pila.h"
 
 using namespace std;
 
@@ -6,12 +7,21 @@ using namespace posta;
 
 int main() {
 	
-	pacco p_txt(9070,52.2,"Via Manzoni 123");
-	pacco p_bin=p_txt;
-	pacco p3;
-	cin >> p3;
+	pila P(5);
+	pacco p1,p2,p3,p4,p5;
+	pacco p;
+	cin >> p1 >> p2 >> p3 >> p4 >> p5;
+	P.push(p1);
+	P.push(p2);
+	P.push(p3);
+	P.push(p4);
+	P.push(p5);
 	
-	p_txt=p_bin=p3;
+	P.salva_bin("filetest.bin");
+	
+	
+	
+	
 
 	return 0;
 }

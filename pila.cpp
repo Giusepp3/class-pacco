@@ -19,7 +19,7 @@ namespace posta{
 		Nodo* node = new Nodo;
 		node->elem=elem;
 		node->next = l;
-		l=q;
+		l=node;
 		sz++;
 		}
 		
@@ -42,9 +42,24 @@ namespace posta{
 	 }
 	 
 	 
+	 void pila::salva_bin(const char* filebin)const throw(err){
+	 	Nodo* temp;
+	 	temp=l;
+	 	while(temp){
+	 		temp->elem.save_bin(filebin);
+	 		temp=temp->next;
+		 }
+	 }
 
 
-
+	void pila::leggi_bin(const char* filebin) throw(err){
+		T e;
+		while(!full()){
+			e.read_bin(filebin);
+			push(e);
+		}
+		
+	}
 
 
 

@@ -13,7 +13,7 @@ namespace posta{
 	
 	struct Nodo; //predichiarazione
 	
-	struct {
+	struct Nodo{
 		Nodo* next;
 		T elem;
 	};
@@ -27,7 +27,7 @@ namespace posta{
 			pila(const int);
 			bool push(const T &);
 			bool pop(T &);
-			bool top(t &) const;
+			bool top(T &) const;
 			bool empty(){return sz==0;}
 			bool full(){return false;}
 			void leggi_bin(const char*)throw(err);
@@ -44,4 +44,4 @@ namespace posta{
 	
 }
 
-#endif //PILA_H
+#endif //PILA_H 

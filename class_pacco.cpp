@@ -99,7 +99,7 @@ namespace posta{
 		ofstream of;
 		of.open(filename,ios::out |ios::app);
 		if(of.fail()) throw err("errore nell'apertura del file ", "posta::pacco::save_txt()");
-		of << codice << ' ' << peso << ' ' << indirizzo << ' ';
+		of << codice << ' ' << peso << ' ' << ' ' << strlen(indirizzo) << indirizzo << ' ';
 		of.close();
 	}
 	
@@ -112,7 +112,8 @@ namespace posta{
 		of.write((char*)&codice,sizeof(codice));
 		of.write((char*)&peso,sizeof(peso));
 		of.write((char*)&len,sizeof(len));
-		w_ind(of);
+		of.write(indirizzo,strlen(indirizzo));
+	//	w_ind(of);	
 		of.close();
 		
 	}
@@ -123,6 +124,42 @@ namespace posta{
 		}
 	}
 	
+	void pacco::read_txt(const char* filename)throw(err){
+		ifstream in;
+		in.open(filename);
+		if(in.fail()) throw err("errore nell'apertura del file", "posta::pacco::read_txt()");
+		int cod,len;
+		float pes;
+		char* ind;
+		in >> cod;
+		set_cod(cod);
+		in >> pes;
+		set_pes(pes);
+		in >> len;
+		ind = new char [len+1];
+		in.getline(ind,len);
+		set_ind(ind);
+		in.close();
+	}
 	
+	void pacco::read_bin(const char* filebin) throw(err){
+		ifstream in;
+		in.open(filebin, ios::in | ios::binary);
+		if(in.fail()) throw err("errore nell'apertura del file", "posta::pacco::read_bin()");
+		int cod,len;
+		float pes;
+		char* ind;
+		in.read((char*)&cod,sizeof(cod));
+		in.read((char*)&pes,sizeof(pes));
+		in.read((char*)&len,sizeof(len));
+		ind = new char [len+1];
+		in.read(ind,len);
+		ind[len]='\0';
+		set_cod(cod);
+		set_pes(pes);
+		set_ind(ind);
+		in.close();
+	}
+
 	
 }

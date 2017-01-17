@@ -33,8 +33,8 @@ namespace posta{
 			friend istream & operator>>(istream & in, pacco &);
 			friend ostream & operator<<(ostream & os, const pacco &);
 			void edit_package(const int cod, const float f, const char* ind); //le funzioni set sono private, questa consente di modificare il pacco
-			void read_txt(const char*)const;
-			void read_bin(const char*)const;
+			void read_txt(const char*)throw(err);
+			void read_bin(const char*)throw(err);
 	};
 	
 	
