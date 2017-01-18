@@ -23,7 +23,6 @@ namespace posta{
 		public:
 			pacco();
 			pacco(const int, const float, const char*);
-			~pacco();
 			pacco(const pacco &);
 			pacco& operator=(const pacco &);
 			void save_bin(const char*)const throw(err);

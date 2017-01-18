@@ -15,11 +15,8 @@ namespace posta{
 		codice = cod;
 		peso = pes;
 		indirizzo = new char [strlen(ind)+1];
-		strcpy(indirizzo,ind);		
-	}
-	
-	pacco::~pacco(){
-		delete [] indirizzo;
+		strcpy(indirizzo,ind);
+		
 	}
 	
 	pacco::pacco(const pacco & p){
